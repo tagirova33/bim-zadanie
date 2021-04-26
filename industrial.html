@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+    <title>Производственный ОКС</title>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(72651862, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/72651862" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-23MM5SG7YB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-23MM5SG7YB');
+    </script>
+    {% include "head.html" %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/css/suggestions.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/js/jquery.suggestions.min.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=62dab56e-7ecf-481a-8ecc-146260f21641&lang=ru_RU" type="text/javascript">
+    </script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/for_templates.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/scrollUp.css' %}" />
+
+    <script src="{% static 'js/map.js' %}"></script>
+    <script src="{% static 'js/manual.js' %}"></script>
+    <script src="{% static 'js/disabled_fields.js' %}"></script>
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'css/header_person.css' %}" />-->
+</head>
+
+
+<body>
+    <style>
+
+
+        #id_techeconompokazatel {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            height: 250px;
+        }
+    </style>
+
+    {% load widget_tweaks %}
+
+    {% load crispy_forms_tags %}
+
+    {% include "header_person.html"%}
+    <form method="post" enctype="multipart/form-data" id="myForm">
+        <div class="container-fluid">
+            <div class="myTitle">
+                <p>Заполнение технического задания на проектирование производственного объекта капитального строительства</p>
+                <input type="submit" name="" class="btn btn-primary" value="Отправить">
+            </div>
+            {% csrf_token %}
+            <div>{% for i in user.visible_fields %}{{i|as_crispy_field}}{% endfor %}</div>
+            <div>{% for ind in industr.visible_fields|slice:":2"%}{{ind|as_crispy_field}}{% endfor %}</div>
+            <div id="map"></div>
+            <div id="accordion">
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    I. Общие данные
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <table>
+                                    {% for ind in industr.visible_fields|slice:"2:3"%}
+                                    <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"> <div class="help-tip" id="{{ind.name}}"> </div></td> </tr>
+                                    {% endfor %}
+                                    {% for ind in industr.visible_fields|slice:"3:5"%}
+                                    <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"> </td> </tr>
+                                    {% endfor %}
+                                    {% for ind in industr.visible_fields|slice:"5:6"%}
+                                    <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"> <div class="help-tip" id="{{ind.name}}"> </div></td> </tr>
+                                    {% endfor %}
+                                    {% for ind in industr.visible_fields|slice:"6:7"%}
+                                    <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"></td> </tr>
+                                    {% endfor %}
+                                    {% for ind in industr.visible_fields|slice:"7:8"%}
+                                    <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"><div class="help-tip" id="{{ind.name}}"> </div> </td> </tr>
+                                    {% endfor %}
+                                    {% for ind in industr.visible_fields|slice:"8:10"%}
+                                    <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"></td> </tr>
+                                    {% endfor %}
+                                    {% for ind in industr.visible_fields|slice:"10:11"%}
+                                    <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"> <div class="help-tip" id="{{ind.name}}"> </div></td> </tr>
+                                    {% endfor %}
+                                    {% for ind in industr.visible_fields|slice:"11:13"%}
+                                    <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"> </td> </tr>
+                                    {% endfor %}
+                                    {% for ind in industr.visible_fields|slice:"13:17"%}
+                                    <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"> <div class="help-tip" id="{{ind.name}}"> </div></td> </tr>
+                                    {% endfor %}
+                                    {% for ind in industr.visible_fields|slice:"17:18"%}
+                                    <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"></td> </tr>
+                                    {% endfor %}
+                                </table>
+                                <div class="accordionInner" id="accordionExample2">
+                                    <div class="card">
+                                        <div class="card-header" id="headingInnerOne">
+                                            <h2 class="mb-1">
+                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseInnerOne" aria-expanded="false" aria-controls="collapseInnerOne">
+                                                    Идентификационные признаки объекта
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseInnerOne" class="collapseInner collapse" aria-labelledby="headingInnerOne" data-parent="#accordionExample2">
+                                            <div class="card-body">
+                                                <table>
+                                                    {% for ind in industr.visible_fields|slice:"18:31"%}
+                                                    <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"> <div class="help-tip" id="{{ind.name}}"> </div></td> </tr>
+                                                    {% endfor %}
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table>
+                                    {% for ind in industr.visible_fields|slice:"31:35"%}
+                                    <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"> <div class="help-tip" id="{{ind.name}}"> </div></td> </tr>
+                                    {% endfor %}
+                                    {% for ind in industr.visible_fields|slice:"35:36"%}
+                                    <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"> </td> </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        II. Требования к проектным решениям
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <table>
+                                        {% for ind in industr.visible_fields|slice:"36:40"%}
+                                        <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"> <div class="help-tip" id="{{ind.name}}"> </div></td> </tr>
+                                        {% endfor %}
+                                    </table>
+                                    <div class="accordionInner" id="accordionExample2">
+                                        <div class="card">
+                                            <div class="card-header" id="headingInnerOne">
+                                                <h2 class="mb-1">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseInnerOne" aria-expanded="false" aria-controls="collapseInnerOne">
+                                                        Требования к конструктивным и объемно-планировочным решениям
+                                                    </button>
+                                                </h2>
+                                            </div>
+                                            <div id="collapseInnerOne" class="collapse" aria-labelledby="headingInnerOne" data-parent="#accordionExample2">
+                                                <div class="card-body">
+                                                    <table>
+                                                        {% for ind in industr.visible_fields|slice:"40:45"%}
+                                                        <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"> <div class="help-tip" id="{{ind.name}}"> </div></td> </tr>
+                                                        {% endfor %}
+                                                        {% for ind in industr.visible_fields|slice:"45:53"%}
+                                                        <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"> </td> </tr>
+                                                        {% endfor %}
+                                                        {% for ind in industr.visible_fields|slice:"53:57"%}
+                                                        <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"> <div class="help-tip" id="{{ind.name}}"> </div></td> </tr>
+                                                        {% endfor %}
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordionInner" id="accordionExample3">
+                                        <div class="card">
+                                            <div class="card-header" id="headingInnerTwo">
+                                                <h2 class="mb-1">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseInnerTwo" aria-expanded="false" aria-controls="collapseInnerTwo">
+                                                        Требования к инженерно-техническим решениям
+                                                    </button>
+                                                </h2>
+                                            </div>
+                                            <div id="collapseInnerTwo" class="collapse" aria-labelledby="headingInnerTwo" data-parent="#accordionExample3">
+                                                <div class="card-body">
+                                                    <div class="accordionInnerThird" id="accordionExample4">
+                                                        <div class="card">
+                                                            <div class="card-header" id="headingInnerThird">
+                                                                <h2 class="mb-1">
+                                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseInnerThird" aria-expanded="false" aria-controls="collapseInnerThird">
+                                                                        Требования к основному технологическому оборудованию
+                                                                    </button>
+                                                                </h2>
+                                                            </div>
+                                                            <div id="collapseInnerThird" class="collapse" aria-labelledby="headingInnerThird" data-parent="#accordionExample4">
+                                                                <div class="card-body2" id="here1">
+                                                                    <table>
+                                                                        {% for ind in industr.visible_fields|slice:"57:67"%}
+                                                                        <tr>
+                                                                            <td class="first_table">
+                                                                                <label for="{{ind.id}}" class="">
+
+                                                                                    {{ind.label}}
+                                                                                </label>
+                                                                                <input type="checkbox" name="checkbox1" value="test" id="{{forloop.counter}}" onclick="enableDisableAll1(this)">
+
+                                                                                <textarea name="{{ind.name}}" cols="40" rows="10" maxlength="100" class="textarea form-control"
+                                                                                          id="{{ind.id}}" value="test" disabled> </textarea>
+                                                                            </td>
+                                                                            <td class="second_table"> <div class="help-tip" id="{{ind.name}}"> </div></td>
+                                                                        </tr>
+                                                                        {% endfor %}
+                                                                        {% for ind in industr.visible_fields|slice:"67:68"%}
+                                                                        <tr>
+                                                                            <td class="first_table">
+                                                                                <label for="{{ind.id}}" class="">
+
+                                                                                    {{ind.label}}
+                                                                                </label>
+                                                                                <input type="checkbox" name="checkbox1" value="test" id="{{forloop.counter}}" onclick="enableDisableAll1(this)">
+
+                                                                                <textarea name="{{ind.name}}" cols="40" rows="10" maxlength="100" class="textarea form-control"
+                                                                                          id="{{ind.id}}" value="test" disabled> </textarea>
+                                                                            </td>
+                                                                            <td class="second_table"> </td>
+                                                                        </tr>
+                                                                        {% endfor %}
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="accordionInnerFour" id="accordionExample5">
+                                                        <div class="card">
+                                                            <div class="card-header" id="headingInnerFour">
+                                                                <h2 class="mb-1">
+                                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseInnerFour" aria-expanded="false" aria-controls="collapseInnerFour">
+                                                                        Требования к наружным сетям инженерно-технического обеспечения
+                                                                    </button>
+                                                                </h2>
+                                                            </div>
+                                                            <div id="collapseInnerFour" class="collapse" aria-labelledby="headingInnerFour" data-parent="#accordionExample5">
+                                                                <div class="card-body2" id="here2">
+                                                                    <!--<table>-->
+                                                                    {% for ind in industr.visible_fields|slice:"68:78"%}
+                                                                    <!--<tr>-->
+                                                                    <!--<td class="first_table">-->
+                                                                    <label for="{{ind.id}}" class="">
+
+                                                                        {{ind.label}}
+                                                                    </label>
+                                                                    <input type="checkbox" name="checkbox1" value="test" id="{{forloop.counter}}" onclick="enableDisableAll2(this)">
+
+                                                                    <textarea name="{{ind.name}}" cols="40" rows="10" maxlength="100" class="textarea form-control"
+                                                                              id="{{ind.id}}" value="test" disabled>Выполнить в соответствии с нормативно-технической и методической документацией РФ (ГОСТ, СНиП, СанПиН и др.) </textarea>
+                                                                    <!--</td>-->
+                                                                    <!--<td class="second_table"></td>-->
+                                                                    <!--</tr>-->
+                                                                    {% endfor %}
+
+                                                                    <!--</table>-->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table>
+                                        {% for ind in industr.visible_fields|slice:"78:94"%}
+                                        <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"> <div class="help-tip" id="{{ind.name}}"> </div></td> </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingThree">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        III. Иные требования к проектированию
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <table>
+                                        {% for ind in industr.visible_fields|slice:"94:102"%}
+                                        <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"> <div class="help-tip" id="{{ind.name}}"> </div></td> </tr>
+                                        {% endfor %}
+                                        {% for ind in industr.visible_fields|slice:"102:103"%}
+                                        <tr><td class="first_table"> {{ ind|as_crispy_field }} </td> <td class="second_table"> </td> </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingFour">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        Вложенные документы
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <table>
+                                        {% for ind in industr.visible_fields|slice:"103:108"%}
+                                        <tr><td class="first_table">{{ind|as_crispy_field}}</td> <td class="second_table"> </td> </tr>
+                                        {% endfor %}
+                                        {% for i in industrial_file.visible_fields %}
+                                        <tr><td class="first_table">{{i|as_crispy_field}}</td> <td class="second_table"> </td> </tr>
+                                        {% endfor %}
+                                        {% for ind in industr.visible_fields|slice:"108:"%}
+                                        <tr><td class="first_table">{{ind|as_crispy_field}}</td> <td class="second_table"> </td> </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <button onclick="topFunction()" id="myBtn" title="Наверх">∧</button>
+
+    <script>
+
+
+        $("#osnovanie").append("<p>Если выбрано Другое, то в поле для реквизитов прописать основание<br><a href='manual.html#par1'>Ознакомиться с нормативной документацией</a></p>");
+
+
+        $("#myForm input[type='submit']").on("click", function (event) {
+            document.getElementById("validation").innerHTML = "textarea:invalid { border: 1px solid red;} select:invalid { border: 1px solid red;}";
+
+            $("#myForm .form-control").each(function () {
+                if ($(this).val() == "") {
+                    $(".collapse.show").removeClass("show");
+                    $(".collapseInner").addClass("show").css("height", "auto");
+                    $(this).closest(".collapse").addClass("show").css("height", "auto");
+                    return false;
+                }
+            });
+
+        });
+
+        function enableDisableAll1(e) {
+            var own = e;
+            i = e.id
+            var container = document.querySelector("#here1");
+            var matches = container.querySelectorAll("textarea");
+            console.log(matches);
+
+            if (own.checked == true) {
+
+                matches[i - 1].disabled = false;
+
+            } else {
+
+                matches[i - 1].disabled = true;
+            }
+
+        }
+        function enableDisableAll2(e) {
+            var own = e;
+            i = e.id
+            var container = document.querySelector("#here2");
+            var matches = container.querySelectorAll("textarea");
+            console.log(matches);
+
+            if (own.checked == true) {
+
+                matches[i - 1].disabled = false;
+
+            } else {
+
+                matches[i - 1].disabled = true;
+            }
+
+        }
+        ///////////////////////////////////////////////////////////
+        // dadata
+        $("#id_zastroichik, #id_investor, #id_projectorganization").suggestions({
+            token: "36028ac652276f12c3436efaf9f6859f11d88015",
+            type: "PARTY",
+            onSelect: function (suggestion) {
+                console.log(suggestion);
+            }
+        });
+        ///////////////////////////////////////////////////////////
+
+        ///////////////////////////////////////////////////////////
+        // проверка на валидацию обязательных пунктов
+        $("#myForm input[type='submit']").on("click", function (event) {
+            document.getElementById("validation").innerHTML = "textarea:invalid { border: 1px solid red;} select:invalid { border: 1px solid red;}";
+            $("#myForm .form-control").each(function () {
+                if ($(this).val() == "") {
+                    $(".collapse.show").removeClass("show");
+                    $(".collapseInner").addClass("show").css("height", "auto");
+                    $(this).closest(".collapse").addClass("show").css("height", "auto");
+                    return false;
+                }
+            });
+        });
+        //////////////////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////////////////
+        // для пунктов, где выбор активирует поля
+
+
+        $("#id_techobespech_spravochnik_drugoe").prop("disabled", true);
+
+        var select2 = document.querySelector('#id_techobespech_spravochnik_7');
+        select2.addEventListener('change', () => {
+            $("#id_techobespech_spravochnik_drugoe").prop("disabled", false);
+        });
+        $("#id_techobespech_spravochnik_drugoe").prop("disabled", true);
+
+        $("#id_videlenie_etapov").prop("disabled", true);
+        var select1 = document.querySelector('#id_etapistroitelsta');
+        select1.addEventListener('change', () => {
+            if (select1.value == "Выделить этапы") {
+                $("#id_videlenie_etapov").prop("disabled", false);
+            }
+            else {
+                $("#id_videlenie_etapov").prop("disabled", true);
+            }
+        });
+
+        $("#id_klassopasnosti_klass").prop("disabled", true);
+        $("#id_klassopasnosti_category").prop("disabled", true);
+        $("#id_opasniobekt").prop("disabled", true);
+        var select = document.querySelector('#id_klassopasnosti');
+        select.addEventListener('change', () => {
+            if (select.value == "Принадлежит") {
+                $("#id_klassopasnosti_klass").prop("disabled", false);
+                $("#id_klassopasnosti_category").prop("disabled", false);
+                $("#id_opasniobekt").prop("disabled", false);
+            }
+            else {
+                $("#id_klassopasnosti_klass").prop("disabled", true);
+                $("#id_klassopasnosti_category").prop("disabled", true);
+                $("#id_opasniobekt").prop("disabled", true);
+
+            }
+        });
+        //////////////////////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////////////////////
+        // подсказки для пукнтов с ссыылками на manual.html
+        $("#osnovanie").append("<p>Если выбрано Другое, то в поле для реквизитов необходимо прописать это другое основание<br><a href='manual.html#par1'>Ознакомиться с нормативной документацией</a></p>");
+        $("#investor").append("<p>При наличии</p>");
+        $("#vidrabot").append("<p><a href='manual.html#par5'>Ознакомиться с нормативной документацией</a></p>");
+        $("#techobespech").append("<p>Имеющиеся ТУ загрузить во вкладке 'Вложенные документы' с указанием реквизитов<br><a href='manual.html#par7'>Ознакомиться с нормативной документацией</a></p>");
+        $("#etapistroitelsta").append("<p><a href='manual.html#par8'>Ознакомиться с нормативной документацией</a></p>");
+        $("#start_date").append("<p><a href='manual.html#par9'>Ознакомиться с нормативной документацией</a></p>");
+        $("#end_date").append("<p><a href='manual.html#par9'>Ознакомиться с нормативной документацией</a></p>");
+        $("#naznachenie").append("<p><a href='manual.html#par11.1'>Ознакомиться с нормативной документацией</a></p>");
+        $("#prinadlezhnost").append("<p><a href='manual.html#par11.2'>Ознакомиться с нормативной документацией</a></p>");
+        $("#opasnieyavlenia").append("<p><a href='manual.html#par11.3'>Ознакомиться с нормативной документацией</a></p>");
+        $("#urovenotvetstvennosti").append("<p><a href='manual.html#par11.7'>Ознакомиться с нормативной документацией</a></p>");
+        $("#inzhinerniziskania").append("<p><a href='manual.html#par14'>Статья 47, часть 5.2 статьи 48 Градостроительного кодекса Российской Федерации [2] Части 1 и 3 статьи 15 Технического регламента о безопасности зданий и сооружений[3]</a></p>");
+        $("#ohrana_okr_sredi").append("<p><a href='manual.html#par25'>Ознакомиться с нормативной документацией</a></p>");
+        $("#obespeh_pozharn_bezop").append("<p><a href='manual.html#par26'>Ознакомиться с нормативной документацией</a></p>");
+        $("#invalidi").append("<p><a href='manual.html#par28'>Ознакомиться с нормативной документацией</a></p>");
+        $("#technich_ekspluatacia").append("<p><a href='manual.html#par31'>Ознакомиться с нормативной документацией</a></p>");
+        $("#proekt_organizacii_str").append("<p><a href='manual.html#par32'>Ознакомиться с нормативной документацией</a></p>");
+        $("#snos_sohranenie").append("<p><a href='manual.html#par33'>Ознакомиться с нормативной документацией</a></p>");
+        $("#nauchno_issled").append("<p><a href='manual.html#par37'>Ознакомиться с нормативной документацией</a></p>");
+        $("#smetnaya_documentacia").append("<p><a href='manual.html#par39'>Ознакомиться с нормативной документацией</a></p>");
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+
+        $("#energy_effekt").append("<p>Не указываются в отношении объектов, на которые требования энергетической эффективности и требования оснащенности их приборами учета используемых энергетических ресурсов не распространяются Статьи <a href='http://www.consultant.ru/document/cons_doc_LAW_93978/4d65f8f0b5a5e943b470b72f05f5e6f9c2cb3b88/'>11</a>, <a href='http://www.consultant.ru/document/cons_doc_LAW_93978/69d7327911915248e5c4e69d2783fab65f64d6b0/'>12</a>, <a href='http://www.consultant.ru/document/cons_doc_LAW_93978/4667df597e53abd12e3908c1f960a866faea8a83/'>15</a>, <a href='http://www.consultant.ru/document/cons_doc_LAW_93978/9852c8414e3c7b47e109c80a089268c222ddad65/'>42</a> Федерального закона «Об энергосбережении и о повышении энергетической эффективности...»</p>");
+        $("#energy_effekt_klass").append("<p><a href='manual.html#par27.1'>Ознакомиться с нормативной документацией</a></p>");
+        $("#energy_effekt_kharakteristika").append("<p><a href='manual.html#par27.2'>Ознакомиться с нормативной документацией</a></p>");
+        $("#energy_effekt_rekviziti").append("<p><a href='manual.html#par27.3'>Ознакомиться с нормативной документацией</a></p>");
+        ////////////////////////////////////////////////////////////////////
+        // 24 пункт
+        $("#otoplenie").append("<p><a href='manual.html#par21.1.1'>Ознакомиться с нормативной документацией</a></p>");
+        $("#ventilyacia").append("<p><a href='manual.html#par21.1.1'>Ознакомиться с нормативной документацией</a></p>");
+        $("#vodoprovod").append("<p><a href='manual.html#par21.1.3'>Ознакомиться с нормативной документацией</a></p>");
+        $("#kanalizacia").append("<p><a href='manual.html#par21.1.4'>Ознакомиться с нормативной документацией</a></p>");
+        $("#electrosnabzhenie").append("<p><a href='manual.html#par21.1.5'>Ознакомиться с нормативной документацией</a></p>");
+        $("#telefonizacia").append("<p><a href='manual.html#par21.1.6'>Ознакомиться с нормативной документацией</a></p>");
+        $("#radiofikacia").append("<p><a href='manual.html#par21.1.6'>Ознакомиться с нормативной документацией</a></p>");
+        $("#inthernet").append("<p><a href='manual.html#par21.1.6'>Ознакомиться с нормативной документацией</a></p>");
+        $("#televidenie").append("<p><a href='manual.html#par21.1.6'>Ознакомиться с нормативной документацией</a></p>");
+        $("#gazifikacia").append("<p><a href='manual.html#par21.1.10'>Ознакомиться с нормативной документацией</a></p>");
+        ////////////////////////////////////////////////////////////////////
+
+        $("#arh_hud_reshenia").append("<p><a href='manual.html#par19'>Ознакомиться с нормативной документацией</a></p>");
+        $("#technologich_reshenia").append("<p><a href='manual.html#par20'>Ознакомиться с нормативной документацией</a></p>");
+        $("#shema_plan_org").append("<p><a href='manual.html#par17.1'>Ознакомиться с нормативной документацией</a></p>");
+        ////////////////////////////////////////////////////////////////////
+        // посдказки, что будут видны на фронте
+        $("#klassopasnosti").append("<p>При принадлежности объекта к опасным производственным объектам также указываются категория и класс опасности объекта<br><a href='http://docs.cntd.ru/document/9046058'>4.1 Подпункты «а», «в», «г» пункта 11 части 1 статьи 48.1 ГрК РФ [2]4.2 Статья 2, приложения 1 и 2 116 ФЗ</a></p>");
+        $("#videlenie_etapov").append("<p>Поле будет доступно при необходимости выделить этапы</p>");
+        $("#klassopasnosti_klass").append("<p>Указывается при принадлжености к опасным производственным объектам</p>");
+        $("#klassopasnosti_category").append("<p>Указывается при принадлжености к опасным производственным объектам</p>");
+        $("#categoryzdanii").append("<p><a href='http://docs.cntd.ru/document/1200071156'>статья 27 123-ФЗ; СП 12.13130.2009 [61]</a></p>");
+        $("#stepenognya").append("<p><a href='http://docs.cntd.ru/document/1200071156'>статьи 30 и 87 123-ФЗ; СП 2.13130.2012 [52]</a></p>");
+        $("#konstructive").append("<p><a href='http://docs.cntd.ru/document/1200071156'>статьи 31 и 87 123-ФЗ; СП 2.13130.2012 [52]</a></p>");
+        $("#functionalpozar").append("<p><a href='http://docs.cntd.ru/document/1200071156'>статья 32 123-ФЗ</a></p>");
+        $("#prebivanieludei").append("<p>Идентификация производится в соответствии с требованиями застройщика (заказчика) <a href='http://www.consultant.ru/document/cons_doc_LAW_95720/7672821aa03b39064836ee59e7c124696fc24ec8/'>(часть 6 статьи 4 384-ФЗ)</a></p>");
+        $("#opasniobekt").append("<p>Указывается при принадлжености к опасным производственным объектам<br><a href='http://docs.cntd.ru/document/499038855'>ПРИКАЗ от 15 июля 2013 года N 306 Об утверждении Федеральных норм и правил в области промышленной безопасности 'Общие требования к обоснованию безопасности опасного производственного объекта'</a></p>");
+        $("#proektniireshenia").append("<p>Указываются требования о том, что проектная документация и принятые в ней решения должны соответствовать установленным требованиям (необходимо указать перечень реквизитов нормативных правовых актов, технических регламентов, нормативных документов), а также соответствовать установленному классу энергоэффективности (не ниже класса 'С')</p>");
+        $("#predelnstoimost").append("<p>Указывается стоимость строительства объекта, определенная с применением укрупненных нормативов цены строительства, а при их отсутствии - с учетом документально подтвержденных сведений о сметной стоимости объектов, аналогичных по назначению, проектной мощности, природным и иным условиям территории, на которой планируется осуществлять строительство</p>");
+
+        $("#shema_plan_org_RZO").append("<p><a href='http://xn------5cdabbpnldcprfc4ag7bdhqdgn0ae1br.xn--p1ai:8080/ksi_page.php'>КСИ табл 1 Помещения и зоны</a></p>");
+
+        $("#inzh_teh_ykreplenie").append("<p>Указывается необходимость выполнения мероприятий и (или) соответствующих разделов проектной документации в соответствии с требованиями технических регламентов с учетом функционального назначения и параметров объекта, а также требований постановления Правительства Российской Федерации от 25 декабря 2013 года N 1244 'Об антитеррористической защищенности объектов(территорий)' (Собрание законодательства Российской Федерации, 2013, N 52, ст.7220, 2016, N 50, ст.7108; 2017, N 31, ст.4929, N 33, ст.5192</p>");
+        $("#uslovia_prebivania").append("<p>Указывается необходимость выполнения мероприятий и (или) подготовки соответствующих разделов проектной документации в соответствии с требованиями технических регламентов с учетом функционального назначения, а также экологической и санитарно-гигиенической опасности предприятия (объекта)</p>");
+        $("#blagoustroistvo").append("<p>Указываются решения по благоустройству, озеленению территории объекта, обустройству площадок и малых архитектурных форм в соответствии с утвержденной документацией по планировке территории, согласованными эскизами организации земельного участка объекта и его благоустройства и озеленения</p>");
+        $("#vosstanovlenie").append("<p>Указывается при необходимости</p>");
+        $("#skladirovanie").append("<p>Указываются при необходимости с учетом требований правовых актов органов местного самоуправления</p>");
+
+        // 3 раздел
+
+        $("#sostav_proektnoi_documentacii_spravochnik").append("<p>Указываются в соответствии с постановлением Правительства Российской Федерации от 16 февраля 2008 года N 87 'О составе разделов проектной документации и требованиях к их содержанию' (Собрание законодательства Российской Федерации, 2008, N 8, ст.744; 2010, N 16, ст.1920; N 51, ст.6937; 2013, N 17, ст.2174; 2014, N 14, ст.1627; N 50, ст.7125; 2015, N 45, ст.6245; 2017, N 29, ст.4368) с учетом функционального назначения объекта</p>");
+        $("#standartizacia").append("<p>(частей таких стандартов и сводов правил), в результате применения которых на обязательной основе обеспечивается соблюдение требований Федерального закона 'Технический регламент о безопасности зданий и сооружений', утвержденный постановлением Правительства Российской Федерации от 26 декабря 2014 года N 1521 'Об утверждении перечня национальных стандартов и сводов правил(частей таких стандартов и сводов правил), в результате применения которых на обязательной основе обеспечивается соблюдение требований Федерального закона 'Технический регламент о безопасности зданий и сооружений'(Собрание законодательства Российской Федерации, 2015, N 2, ст.465; N 40, ст.5568; 2016 N 50, ст.7122)</p>");
+        $("#spec_tech_uslovia").append("<p><a href='manual.html#par40'>Ознакомиться с нормативной документацией</a></p>");
+        $("#demonstacii").append("<p>Указываются в случае принятия застройщиком (техническим заказчиком) решения о выполнении демонстрационных материалов, макетов<br>В пункте даётся поручение о подготовке демонстрационных материалов и определяется их состав (планшеты, изометрические чертежи, макеты, видеоматериалы для проведения видеопрезентации и интерактивной презентации, др.)</p>");
+        $("#econom_effect_document").append("<p>Указывается требование о подготовке проектной документации с использованием экономически эффективной проектной документации повторного использования объекта капитального строительства, аналогичного по назначению, проектной мощности, природным и иным условиям территории, на которой планируется осуществлять строительство, а при отсутствии такой проектной документации - с учетом критериев экономической эффективности проектной документации</p>");
+        $("#inform_modelirovanie").append("<p>Указываются в случае принятия застройщиком (техническим заказчиком) решения о применении технологий информационного моделирования<br><a href='manual.html#par43'>Ознакомиться с нормативной документацией</a></p>");
+
+        /////////////////////////////////////////////////////////////////////
+
+        /////////////////////////////////////////////////////////////////////
+        //предзаполнение
+        $("#id_inzhinerniziskania").append("Выполнить инженерные изысканий в объеме, необходимом и достаточном для подготовки проектной документации.");
+
+        $("#id_techeconompokazatel").append("Площадь:" + '\n' + "Объем:" + '\n' + "Протяженность:" + '\n' + "Количество этажей:" + '\n' + "Производственная мощность:" + '\n' + "Пропускная способность:" + '\n' + "Грузооборот:" + '\n' + "Интенсивность движения:" + '\n' + "Другие показатели:");
+
+        ////////////////////////////////////////////////////////////////////
+
+        ///////////////////////////////////////////////////////////////////////
+        // подсказки для 18(21) пункта
+        $("#materiali").append("<p>Указывается порядок направления проектной организацией вариантов применяемых материалов, изделий, конструкций, оборудования и их рассмотрения и согласования застройщиком (техническим заказчиком).</p>");
+        $("#stroitelnie_konstrukcii").append("<p><a href='manual.html#par21.2'>Ознакомиться с нормативной документацией</a></p>");
+        $("#fundament").append("<p>Указывается необходимость разработки решений фундаментов с учетом результатов инженерных изысканий, а также технико-экономического сравнения вариантов- предпочтительный тип фундаментов: ленточные, столбчатые, свайные, монолитная плита, комбинированные и т.п.<br> <a href = 'http://docs.cntd.ru/document/456054206'>СП 22.13330.2016 Основания зданий и сооружений.</a></p>");
+        $("#steni_podvali_cokol").append("<p>Указывается необходимость применения материалов, изделий, конструкций либо определяются конкретные требования к материалам, изделиям, конструкциям <br><a href = 'http://docs.cntd.ru/document/456054206'>СП 22.13330.2016 Основания зданий и сооружений.</a></p>");
+        $("#steni_naruzhn").append("<p>Указывается необходимость применения материалов, изделий, конструкций либо определяются конкретные требования к материалам, изделиям, конструкциям.<p>");
+        $("#otdelka_vnutr").append("<p>Указываются эстетические и эксплуатационные характеристики отделочных материалов, включая текстуру поверхности, цветовую гамму и оттенки, необходимость применения материалов для внутренней отделки объекта на основании вариантов цветовых решений помещений объекта.</p>");
+        $("#otdelka_naruzhn").append("<p>Указываются эстетические и эксплуатационные характеристики отделочных материалов, включая текстуру поверхности, цветовую гамму и оттенки, необходимость применения материалов для наружной отделки объекта на основании вариантов цветовых решений фасадов объекта.</p>");
+        $("#bezopasnost").append("<p>Указываются в случае если строительство и эксплуатация объекта планируется в сложных природных условиях.<br><a href=''></a>384-ФЗ  Технический регламент о безопасности зданий и сооружений Статья 18.</p>");
+        //$("#id_inzhinerniziskania").append("Выполнить инженерные изысканий в объеме, необходимом и достаточном для подготовки проектной документации.");
+
+        $("#inzh_zashita").append("<p>Указываются в случае если строительство и эксплуатация объекта планируется в сложных природных условиях<br><a href='manual.html#par21.17'>Ознакомиться с нормативной документацией</a></p>");
+
+        //////////////////////////////////////////////////////////////////////
+        //Get the button
+        var mybutton = document.getElementById("myBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</body>
+
+</html>
