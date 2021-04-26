@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+<head>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(72651862, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/72651862" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-23MM5SG7YB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-23MM5SG7YB');
+    </script>
+
+
+    <title>Задание на проектирование</title>
+
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'css/first.css' %}" />-->
+</head>
+{% include "header_person.html"%}
+<body>
+    <style>
+        #firstForm {
+            background-color: #ffffff;
+            margin: 100px auto;
+            padding: 40px;
+            width: 70%;
+            min-width: 300px;
+        }
+        body {
+            background-color: #f1f1f1 !important;
+            font-family: 'FuturaPT',Arial,sans-serif !important;
+        }
+      /*  .row {
+            display: flex;
+        }
+        }
+
+        .column {
+            flex: 50%;
+        }*/
+        /* Create two equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 50%;
+            
+           
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 1100px) {
+            .column {
+                width: 100%;
+            }
+        }
+        h2 {
+            font-style: normal;
+            margin: 0;
+            font-weight: 100;
+            line-height: 1.2;
+            
+         
+        }
+        h3 {
+            font-style: normal;
+            margin: 0;
+          
+            line-height: 1.2;
+        }
+        .textDiv{
+            padding: 20px;
+        }
+        .pDiv p {
+            text-indent: 20px; /* Отступ первой строки в пикселах */
+            letter-spacing: 0.9px;
+            text-align: justify;
+            margin: 10px;
+        }
+        .separation {
+            width: 354px;
+            height: 10px;
+            margin: 10px 10px 20px;
+            background-color: #85abb7;
+        }
+        .radioDiv{
+            
+        }
+        .radioContainer {
+            
+            /*position: absolute;*/
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-check-input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-appearance: none;
+            -o-appearance: none;
+            appearance: none;
+            position: relative;
+            top: 13.33333px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 40px;
+            width: 40px;
+            transition: all 0.15s ease-out 0s;
+            background: #cbd1d8;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 0.5rem;
+            outline: none;
+            position: relative;
+            z-index: 1000;
+            border-radius: 50%;
+        }
+
+        .form-check-input:hover {
+            background: #9faab7;
+        }
+
+            .form-check-input:checked {
+                background: #85abb7;
+            }
+
+        .form-check-input:checked::before {
+            height: 40px;
+            width: 40px;
+            position: absolute;
+            content: '✔';
+            display: inline-block;
+            font-size: 26.66667px;
+            text-align: center;
+            line-height: 40px;
+        }
+
+            .form-check-input:checked::after {
+                -webkit-animation: click-wave 0.65s;
+                -moz-animation: click-wave 0.65s;
+                animation: click-wave 0.65s;
+                background: #40e0d0;
+                content: '';
+                display: block;
+                position: relative;
+                z-index: 100;
+            }
+
+        .requiredField{
+            display: none;
+        }
+        .form-check-label {
+            font-weight: 600;
+            font-size: 20px;
+            font-family: 'FuturaPT',Arial,sans-serif;
+        }
+
+
+
+        .button1 {
+            font-weight: 600;
+            font-family: 'FuturaPT',Arial,sans-serif;
+            background-color: #0ACDF8; /* blue */
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .button1 {
+            background-color: white;
+            color: gray;
+            border: 2px solid #0ACDF8;
+        }
+
+            .button1:hover {
+                background-color: #0ACDF8;
+                color: white;
+            }
+
+            .btnDiv{
+                padding-top: 40px;
+            }
+        </style>
+    <form id="firstForm" action="" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="column">
+                <div class=" = "textDiv">
+                <h2 style="padding: 15px; color:#808080" >РАЗРАБОТКА ТЕХНИЧЕСКОГО ЗАДАНИЯ НА ПРОЕКТИРОВАНИЕ ОБЪЕКТА КАПИТАЛЬНОГО СТРОИТЕЛЬСТВА</h2>
+                    <div class="separation"></div>
+                    <div class="pDiv">
+                <p> Выберите класс объекта капитального строительства и перейдите к заполнению формы задания на проектирование. После этого вы получите на почту готовый документ в формате PDF, сформированный на основе введенных данных. </p>
+                <p>Документ разработан в соответствии с <a href="http://docs.cntd.ru/document/542620215">приказом Министерства строительства и жилищно-коммунального хозяйства РФ от 1 марта 2018 года №125/пр.</a> </p>
+                <p> В соответствие с <a href="http://publication.pravo.gov.ru/Document/View/0001202009220002">Постановлением Правительства РФ от 15 сентября 2020 г. № 1431 “Об утверждении Правил формирования и ведения информационной модели объекта капитального строительства…» </a>документы, включаемые в информационную модель объекта капитального строительства, представляются в форме электронных документов в виде файлов в формате XML или PDF (до утверждения схемы XML подлежащей использованию).</p>
+                <p> Подготовка технического задания на проектирование – важнейший этап на пути реализации вашего инвестиционного проекта и залог успешного начала и завершения всего проектирования. Данный документ отражает все принципиальные технические вопросы, необходимые при разработке и составлении проектной или рабочей документации, а также требования к планировочным, архитектурным, инженерным и технологическим решениям и свойствам объекта архитектуры, его основных параметров, стоимости и организации его строительства. </p>
+                    </div>
+                    </div>
+            </div>
+            <div class="column" style="position: relative;">
+                <div class="radioContainer">
+                    <h3 style="padding: 25px; color:#808080; width:50%; text-align: center" class="">Выберите класс объекта капитального строительства</h3>
+                    {% load widget_tweaks %}
+                    {% load crispy_forms_tags %}
+                    <div class="radioDiv">
+                        {% for o in oks.visible_fields%}
+                        <p>{{ o|as_crispy_field }}</p>
+                        {%endfor %}
+                    </div>
+                    <div class="btnDiv">
+                    <input type="submit" class="button button1" value="ВПЕРЕД"/>
+                   </div>
+                       
+                   
+                  
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
