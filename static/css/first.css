@@ -1,0 +1,36 @@
+/*для главной страницы*/
+.next {			/*для кнопки*/
+	position: relative;
+	/*left: 65%; */
+	float:right;
+	padding: 10px;
+}
+
+.content-text {
+	padding: 20px;
+	position: relative;
+	box-sizing: border-box;
+	min-height: 600px;
+}
+
+.content-text h3 {
+	font-weight: bold;
+	text-align: center;
+	margin-top: 50px;
+}
+
+.checkOKS {
+	position: relative;
+	padding: 20px;
+	min-height: 600px;
+	border: 1px solid #2646B7;
+	box-sizing: border-box;
+	border-radius: 10px;
+}
+
+.labOKS {
+	font-weight: bold;
+	text-align: center;
+	margin-top: 50px;
+}
+

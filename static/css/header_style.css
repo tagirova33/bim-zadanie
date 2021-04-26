@@ -1,0 +1,67 @@
+/* все для шапки */
+.header {
+ padding-top: 15px;
+ color: #fff;
+ background: #2646B7;
+ padding-bottom: 15px
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+}
+.logo {
+  text-decoration: none;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 42px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.333333px;
+  color: #FFFFFF;
+}
+.menu {
+	display: flex;
+}
+
+ul, li {
+	display: block;
+	margin: 0;
+}
+
+.menu li {
+	text-transform: uppercase;
+	font-size: 14px;
+	letter-spacing: 0.1em;
+}
+
+/*.menu li a:hover {
+                  border-bottom: 1px solid #fff;
+              }*/
+
+.menu li {
+	margin-right: 20px;
+}
+
+.menu a:link {
+	color: white;
+	text-decoration: none;
+}
+
+.menu a:visited {
+	text-decoration: none;
+	color: white;
+}
+
+
+.menu a:hover {
+	text-decoration: underline;
+	color: white;
+}
+
+.menu a:active {
+	color: white;
+	text-decoration: underline;
+}
