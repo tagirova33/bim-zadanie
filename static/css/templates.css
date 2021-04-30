@@ -1,0 +1,222 @@
+
+.help-tip:hover p {
+    display: block;
+    transform-origin: 100% 0%;
+    -webkit-animation: fadeIn 0.3s ease-in-out;
+    animation: fadeIn 0.3s ease-in-out;
+}        
+
+.help-tip p { /* The tooltip */
+    display: none;
+    text-align: left;
+    background-color: #1E2021;
+    padding: 20px;
+    width: 300px;
+    position: absolute;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    right: -4px;
+    color: #FFF;
+    font-size: 13px;
+    line-height: 1.4;
+    z-index: 1;
+}
+
+.help-tip p:before { /* The pointer of the tooltip */
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-bottom-color: #1E2021;
+    right: 10px;
+    top: -12px;
+}
+
+.help-tip p:after { /* Prevents the tooltip from being hidden */
+  width: 100%;
+  height: 40px;
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 0;
+}
+
+.help-tip {
+    position: relative;
+    margin: 0 auto;
+    left: 10px;
+    top: 10px;
+    text-align: center;
+    float: left;
+    background-color: #BCDBEA;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    line-height: 26px;
+    cursor: default;
+}
+
+    .help-tip:before {
+        content: '?';
+        font-weight: bold;
+        color: #FFF;
+    }
+
+
+/* CSS animation */
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+
+    100% {
+        opacity: 100%;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
+
+#map {
+    height: 400px;
+    padding: 5px;
+}
+
+* {
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #f1f1f1;
+  }
+
+  #regForm {
+    background-color: #ffffff;
+    margin: 100px auto;
+    font-family: Raleway;
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  textarea, select {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  }
+
+  textarea {
+    min-height: calc(1.5em + .75rem + 2px);
+  }
+
+  textarea {
+    box-sizing: border-box;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 45px;
+  }
+
+ 
+  /* Mark input boxes that gets an error on validation: */
+
+  textarea.invalid {
+    background-color: #ffdddd;
+  }
+
+  select.invalid {
+    background-color: #ffdddd;
+  }
+
+  input.invalid {
+    background-color: #ffdddd;
+  }
+
+  textarea {
+    box-sizing: border-box;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 45px;
+  }
+
+  /* Hide all steps by default: */
+  .tab {
+    display: none;
+  }
+
+  button {
+    background-color: #0ACDF8;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+
+  #skipBtn {
+    background-color: #bbbbbb;
+  }
+
+  /* Make circles that indicate the steps of the form: */
+  .step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+
+  .step.active {
+    opacity: 1;
+  }
+
+  /* Mark the steps that are finished and valid: */
+  .step.finish {
+    background-color: #0ACDF8;
+  }
+
+  fieldset{
+      min-width: 0;
+      padding: 0;
+      margin: 0;
+      border: 0;
+  }
+  .slices{
+      padding-top: 10px;
+  }
