@@ -40,7 +40,7 @@
         #firstForm {
             background-color: #ffffff;
             margin: 100px auto;
-            padding: 40px;
+            padding: 30px;
             width: 70%;
             min-width: 300px;
         }
@@ -101,14 +101,12 @@
             margin: 10px;
         }
         .separation {
-            width: 354px;
+            width: 40%;
             height: 10px;
             margin: 10px 10px 20px;
             background-color: #85abb7;
         }
-        .radioDiv{
-            
-        }
+      
         .radioContainer {
             
             /*position: absolute;*/
@@ -128,8 +126,8 @@
             right: 0;
             bottom: 0;
             left: 0;
-            height: 40px;
-            width: 40px;
+            height: 35px;
+            width: 35px;
             transition: all 0.15s ease-out 0s;
             background: #cbd1d8;
             border: none;
@@ -152,8 +150,8 @@
             }
 
         .form-check-input:checked::before {
-            height: 40px;
-            width: 40px;
+            height: 35px;
+            width: 35px;
             position: absolute;
             content: '✔';
             display: inline-block;
@@ -178,7 +176,7 @@
         }
         .form-check-label {
             font-weight: 600;
-            font-size: 20px;
+            font-size: 17px;
             font-family: 'FuturaPT',Arial,sans-serif;
         }
 
@@ -194,7 +192,7 @@
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 20px;
+            font-size: 17px;
             margin: 4px 2px;
             transition-duration: 0.4s;
             cursor: pointer;
@@ -216,10 +214,24 @@
             }
         </style>
     <form id="firstForm" action="" method="POST">
+        {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert" id='btnClose'>
+            ×
+            </button>
+            <strong id="msg">{{message}}<strong>
+          </div>
+          <script>$('#btnClose').click(function() {
+            $('#msg').toggle();
+            $('#btnClose').toggle();
+        });</script>
+       {% endfor %}
+      {% endif %}
         {% csrf_token %}
         <div class="row">
             <div class="column">
-                <div class=" = "textDiv">
+                <div class="textDiv">
                 <h2 style="padding: 15px; color:#808080" >РАЗРАБОТКА ТЕХНИЧЕСКОГО ЗАДАНИЯ НА ПРОЕКТИРОВАНИЕ ОБЪЕКТА КАПИТАЛЬНОГО СТРОИТЕЛЬСТВА</h2>
                     <div class="separation"></div>
                     <div class="pDiv">
@@ -250,5 +262,6 @@
             </div>
         </div>
     </form>
+   
 </body>
 </html>

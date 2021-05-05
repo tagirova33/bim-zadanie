@@ -32,9 +32,8 @@
         gtag('config', 'G-23MM5SG7YB');
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/css/suggestions.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/js/jquery.suggestions.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    
     <script src="https://api-maps.yandex.ru/2.1/?apikey=62dab56e-7ecf-481a-8ecc-146260f21641&lang=ru_RU" type="text/javascript"></script>
   
     <script src="{% static 'js/map.js' %}"></script>
@@ -279,14 +278,7 @@
 
         // }
         ///////////////////////////////////////////////////////////
-        // dadata
-        $("#id_zastroichik, #id_investor, #id_projectorganization").suggestions({
-            token: "36028ac652276f12c3436efaf9f6859f11d88015",
-            type: "PARTY",
-            onSelect: function (suggestion) {
-                console.log(suggestion);
-            }
-        });
+       
         ///////////////////////////////////////////////////////////
 
        
@@ -478,15 +470,22 @@
               if (y[i].value == "") {
                 // add an "invalid" class to the field:
                 y[i].className += " invalid";
+                
+                    // $('html,body').animate({scrollTop: $(y[i]).focus().offset().top - 50},'fast');
+                
+               
+                // for(j = 0; j < 1; j++){
+                //   $('html, body').animate({
+                //   scrollTop: $(y[i]).focus().offset().top - 25
+                // }, 1000);  
+                // }
+                
                 // and set the current valid status to false
                 valid = false;
-              } else {
-                z = document.getElementsByTagName("textarea");
-                for (j = 0; j < z.length; j++) {
-                  z[j].className += 'textarea form-control';
-                }
-              }
+              
             }
+          }
+        
     
             // If the valid status is true, mark the step as finished and valid:
             if (valid) {
@@ -507,16 +506,26 @@
             x[n].className += " active";
             $("#progressbar li").eq(n).addClass("active");
           }
-      // dadata
-      $("#id_zastroichik, #id_investor, #id_projectorganization").suggestions({
-            token: "36028ac652276f12c3436efaf9f6859f11d88015",
-            type: "PARTY",
-            onSelect: function (suggestion) {
-                console.log(suggestion);
-            }
-        });
+     
     </script>
-    
+     </script>
+     <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@17.12.0/dist/css/suggestions.min.css" type="text/css" rel="stylesheet" />
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+     <!--[if lt IE 10]>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js"></script>
+     <![endif]-->
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/suggestions-jquery@17.12.0/dist/js/jquery.suggestions.min.js"></script>
+     <script type="text/javascript">
+          $("#id_zastroichik, #id_investor, #id_projectorganization").suggestions({
+               token: "36028ac652276f12c3436efaf9f6859f11d88015",
+               type: "PARTY",
+               onSelect: function (suggestion) {
+                   console.log(suggestion);
+               }
+           });
+     </script>
+   
+     
 </body>
 
 </html>
