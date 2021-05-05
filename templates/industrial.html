@@ -31,9 +31,9 @@
         gtag('config', 'G-23MM5SG7YB');
     </script>
   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/css/suggestions.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/js/jquery.suggestions.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/js/jquery.suggestions.min.js"></script> -->
     <script src="https://api-maps.yandex.ru/2.1/?apikey=62dab56e-7ecf-481a-8ecc-146260f21641&lang=ru_RU" type="text/javascript">
     </script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/templates.css' %}" />
@@ -297,16 +297,16 @@
             }
 
         }
-        ///////////////////////////////////////////////////////////
-        // dadata
-        $("#id_zastroichik, #id_investor, #id_projectorganization").suggestions({
-            token: "36028ac652276f12c3436efaf9f6859f11d88015",
-            type: "PARTY",
-            onSelect: function (suggestion) {
-                console.log(suggestion);
-            }
-        });
-        ///////////////////////////////////////////////////////////
+        // ///////////////////////////////////////////////////////////
+        // // dadata
+        // $("#id_zastroichik, #id_investor, #id_projectorganization").suggestions({
+        //     token: "36028ac652276f12c3436efaf9f6859f11d88015",
+        //     type: "PARTY",
+        //     onSelect: function (suggestion) {
+        //         console.log(suggestion);
+        //     }
+        // });
+        // ///////////////////////////////////////////////////////////
 
  
 
@@ -456,6 +456,22 @@
 
        
     </script>
+     </script>
+     <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@17.12.0/dist/css/suggestions.min.css" type="text/css" rel="stylesheet" />
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+     <!--[if lt IE 10]>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js"></script>
+     <![endif]-->
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/suggestions-jquery@17.12.0/dist/js/jquery.suggestions.min.js"></script>
+     <script type="text/javascript">
+          $("#id_zastroichik, #id_investor, #id_projectorganization").suggestions({
+               token: "36028ac652276f12c3436efaf9f6859f11d88015",
+               type: "PARTY",
+               onSelect: function (suggestion) {
+                   console.log(suggestion);
+               }
+           });
+     </script>
 </body>
 
 </html>
