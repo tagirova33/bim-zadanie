@@ -20,15 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '5h)_n-ku0#a1=g++l=we2$&1usg0==j)!sr67@eu0v&4id_=l-'
+SECRET_KEY = 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['xn------5cdabbpnldcprfc4ag7bdhqdgn0ae1br.xn--p1ai']
-
-#ALLOWED_HOSTS = ['390763-cl14303.tmweb.ru']
-
+ALLOWED_HOSTS = 
 
 # Application definition
 
@@ -88,12 +85,7 @@ EMAIL_USE_TLS = True
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_project',
-	'USER': 'develop',
-	'PASSWORD': 'MyDev123',
-	'HOST': 'localhost',
-	'PORT': 3306,
+       
     }
 }
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
