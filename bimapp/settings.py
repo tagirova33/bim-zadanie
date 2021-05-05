@@ -73,11 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bimapp.wsgi.application'
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'bimcentre.info@gmail.com'
-EMAIL_HOST_PASSWORD = 'qweBim456'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+
 
 
 # Database
